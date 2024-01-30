@@ -121,7 +121,7 @@ int main()
     while (lengthOfVector > previousLengthOfVector)
     {
         vectorOfSets.clear();
-        cout << soldItems << " items with support count, total combination: " << lengthOfVector << endl
+        cout << soldItems << " items with support count "<<supportCount<<", total combination: " << lengthOfVector-previousLengthOfVector << endl
              << endl;
         set<int> set1;
         set<int> set2;
@@ -151,11 +151,11 @@ int main()
                     if (it == vectorOfSets.end())
                     {
                         vectorOfSets.push_back(itemSet);
-                        for (const auto &element : itemSet)
-                        {
-                            cout << element << " ";
-                        }
-                        cout << endl;
+                        // for (const auto &element : itemSet)
+                        // {
+                        //     cout << element << " ";
+                        // }
+                        // cout << endl;
                         pairOfSets.first = itemSet;
                         for (int r = 1; r <= NumOfTransactions; r++)
                         {
@@ -186,29 +186,30 @@ int main()
                         }
                         counter = 0;
 
-                        cout << pairOfSets.second << endl;
+                        // cout << pairOfSets.second << endl;
                     }
                     itemSet.clear();
                 }
             }
         }
-        cout << "hi" << endl;
+        // cout << "hi" << endl;
         previousLengthOfVector = lengthOfVector;
         lengthOfVector = vectorOfPairs.size();
-        cout << vectorOfPairs.size() << endl;
+        // cout << vectorOfPairs.size() << endl;
         if (lengthOfVector > previousLengthOfVector)
         {
             soldItems++;
         }
 
-        for (const auto &pair : vectorOfPairs)
+        // for (const auto &pair : vectorOfPairs)
+        for(int i=previousLengthOfVector; i<lengthOfVector; i++)
         {
             cout << "Set: ";
-            for (const auto &element : pair.first)
+            for (const auto &element : vectorOfPairs[i].first)
             {
                 cout << element << " ";
             }
-            cout << "| Int: " << pair.second << endl;
+            cout << "| Sold: " << vectorOfPairs[i].second << endl;
         }
     }
 }
